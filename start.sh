@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [[ ! -z "${JUPYTER_PASSWORD_HASH}" ]]; then
   jupyter lab --NotebookApp.token='' --NotebookApp.password='${JUPYTER_PASSWORD_HASH}'
