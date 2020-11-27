@@ -35,11 +35,11 @@ RUN julia -e 'using Pkg; pkg"add IJulia; add Plots; add CSV; add DataFrames"'
 
 RUN jupyter kernelspec list
 
-RUN mkdir $HOME/.jupyter
-COPY ./jupyter_notebook_config.py $HOME/.jupyter/jupyter_notebook_config.py
+RUN mkdir -p $HOME/notebook/.jupyter
+COPY ./jupyter_notebook_config.py $HOME/notebook/.jupyter/jupyter_notebook_config.py
 
-RUN mkdir $HOME/work
-COPY example.ipynb $HOME/work/example.ipynb
+RUN mkdir $HOME/notebook/work
+COPY example.ipynb $HOME/notebook/work/example.ipynb
 
 USER root
 
@@ -47,7 +47,7 @@ RUN apt-get install sudo \
     && usermod -aG sudo $NB_USER
 
 # prevent git init on this level
-RUN mkdir $HOME/work/.git
+RUN mkdir $HOME/notebook/work/.git
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 USER $NB_USER
