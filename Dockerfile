@@ -1,11 +1,12 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-focal-arm64v8
+FROM mcr.microsoft.com/dotnet/sdk:5.0.100-focal-arm64v8
 
 RUN apt-get update \
     && apt-get -y upgrade \
     && apt-get -y install python3 python3-pip python3-dev ipython3 nano julia
 
 RUN apt-get -y install nmap 
-
+RUN apt-get -y install libffi-dev
+RUN apt-get -y install bash
 RUN pip3 install jupyterlab
 
 RUN apt-get -y install nodejs \
